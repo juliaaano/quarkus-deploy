@@ -1,0 +1,5 @@
+1. Access the application by running these commands:
+{{- if .Capabilities.APIVersions.Has "route.openshift.io/v1/Route" }}
+export ROUTE_HOST=$(kubectl get route {{ include "quarkus.fullname" . }} -o jsonpath='{.spec.host}')
+curl -v http://$ROUTE_HOST/q/health
+{{- end }}

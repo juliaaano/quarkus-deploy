@@ -1,0 +1,15 @@
+{{- if .Capabilities.APIVersions.Has "route.openshift.io/v1/Route" }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "quarkus.fullname" . }}
+  labels: {{- include "quarkus.labels" . | nindent 4 }}
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: {{ include "quarkus.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+{{- end }}

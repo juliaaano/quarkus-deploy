@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "liquibase.fullname" . }}
+  labels: {{- include "quarkus.labels" . | nindent 4 }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: liquibase
+          image: {{ .Values.liquibase.image | quote }}
+          args:
+            [
+              "--url={{ .Values.liquibase.url }}",
+              "--username=$(LIQUIBASE_DB_USERNAME)",
+              "--password=$(LIQUIBASE_DB_PASSWORD)",
+              "--defaultsFile=/liquibase/changelog/liquibase.properties",
+              "--changeLogFile=db.changelog-master.xml",
+              "--logLevel={{ .Values.liquibase.logLevel }}",
+              "update",
+            ]
+          envFrom:
+            - secretRef:
+                name: liquibase
+          volumeMounts:
+            - name: liquibase
+              mountPath: "/liquibase/changelog"
+      volumes:
+        - name: liquibase
+          configMap:
+            name: {{ include "liquibase.fullname" . }}
+      restartPolicy: Never
+  backoffLimit: 0
