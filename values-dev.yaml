@@ -1,4 +1,4 @@
-# QUARKUS APP environment
+# QUARKUS APP ENVIRONMENT
 environment: |-
   QUARKUS_LOG_CONSOLE_JSON: "false"
   QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgresql:5432/quarkusdb
@@ -18,7 +18,7 @@ secrets:
     dbUsername: AgC0HoRhZeHp2dhn8KxERXpReQ3+HeH0pTFk2/T+Tb5v1cz5UBI+SlTbCk1qbATbwIKm4gh9dspGtH0NornRpJj4azItfAGvTxoWw7P5Dyz72uDGyV2GZpGfjZ0NR7vNWdJzl7rr1qJqYsdNktePjCN3OvJQVrkPFziWNhrRMNUUN5F5YxGu3LmKOaFiJdPt59AnxxcWe/2xRgK5JfGYsAJSJciihuXUkYBWKl8V1u1urrgI7E/xC2rhXgB6YlsLsCowGK0oovF6dBMrxYFj6yknET0cwwb4I3iUBT0LbIPJM8Bj2rlMPFOEdMZHAnIIzfMt06tOJ81gvOdYTVZM339eKZo02AvDsYJFiCIPt1lPGD8Iuo3In3Fh/7fojPcE0FSHdZZCWnw9CSPaFlUznB1n/P5M7Gepj6hAPYIHyK8U9WuthSlidLRGE7RmiqiLVmrVMOveQtvJyxselF5fCch/xuDAGrL4f3KrZYTpJngmxF9rSjO1WprFjPkY00gIJYxZo0wBjM1Xsk3KxJ1thn/WU1h4OMd+plOK13cam8HuMqpitSq/dRMR6b4C8LRrzbJdWg8Vdt1mgnIXWDCjVGN+lgRxeYnrv/PJ8YgZK4ZO9N/sY1O2S4g40yq1pvH/Fg2KhOJGYFJFBEpX+sTD+5/oBLbItpmtjhPde60dXYwTcyyqzyMx7M0O3fYX5+5cVG9RyMrzOre1
     dbPassword: AgCdwDsIVjLqQy/11z7AqsDGHPdT/7M5zRrJYAnniFQevgGuDPYpbYEF0b9JxeTSLcoAIYyV/nkl5PbVvJ8SUxn6OIPLXzBXrIHouCzVYnaOx0D5WbLNQy6uYAP3pIymHW0jaOzuVhO85ng9+vxjowebTYwGP1o6apVqzdjpCuPk1ZXwTsUs3y4Ist4xHYEJlCvr0K2Nb/2rYzzwMfd3jF/Snha+BcU0qiqHE6Nr9r59g2huushD+SUqVWsbrQYTiLan6fvPHtZNVzXlu3sJbSO3SLHu87ixOWiIIHw2K/Fn+lUA4/qTH+6Dg/5yBb5Fmk4H9K0jiWgaqldFg6n+2SXNBPZsUOdJra5sx3hs+/ytyDXROSOpJYQ/Sr5TkPtstfuYTxp84c997UrtbEI+YRAoQzyxf1u7yT8aGOVK7Yb/Yz6PHl/sOMJWaOU13p/Uuu6lxL0ki48pU8WUzNsfmKXP3gFlijSQiPvR3RVAabJqW/wl6bwWx1dTZn6iC/5X7IInVw8hb0CEFijdcHSMwV2H3PEHmCn98dp/jZvYytUBNl5GfEY1cgkYd2KCnESUwxip08qKYivP7c6dKF7H9ylT8LrKU8HqO87J8fA/lCoIUCObtvCk4193AJbw5NdU3CPhoBzMggR2PwvaF7ZwvNnhsQRphBKUW2QsyBTLWjtuMCfhecbZJuKoGUATtvOAHfQ7cqq8CEPSLg==
 
-# todo
+# Requests and limits for the app pod deployment
 resources:
   limits:
     cpu: 500m
@@ -27,5 +27,7 @@ resources:
     cpu: 250m
     memory: 256Mi
 
+# HPA autoscaling
 autoscaling:
   enabled: true
+  minReplicas: 2
