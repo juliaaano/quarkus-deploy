@@ -43,6 +43,6 @@ $ kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller
 Set raw encrypted secret as a Helm value. Keep '--name' as it is.
 
 ```
-$ echo -n app-secret-value | kubeseal --raw --from-file=/dev/stdin --name application
-$ echo -n liquibase-secret-value | kubeseal --raw --from-file=/dev/stdin --name liquibase
+$ echo -n username | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
+$ echo -n password | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
 ```

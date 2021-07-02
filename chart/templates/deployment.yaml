@@ -52,7 +52,7 @@ spec:
             - configMapRef:
                 name: {{ include "quarkus.fullname" . }}
             - secretRef:
-                name: application
+                name: {{ include "quarkus.fullname" . }}
           volumeMounts:
             - name: sample-volume
               mountPath: /app/sample-volume
