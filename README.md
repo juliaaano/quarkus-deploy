@@ -2,12 +2,21 @@
 
 Deploys the project [https://github.com/juliaaano/quarkus](https://github.com/juliaaano/quarkus) on Kubernetes or OpenShift.
 
-This project is meant to be watched by ArgoCD.
-
 See details below for instructions and requirements.
 
 ```
 $ helm install myrelease -f values-dev.yaml chart
+```
+
+## PostgreSQL
+
+The app needs a database such as PostgreSQL:
+
+```
+$ oc new-app --name=postgresql --template=postgresql-ephemeral \
+    -e POSTGRESQL_USER=quarkus \
+    -e POSTGRESQL_PASSWORD=password \
+    -e POSTGRESQL_DATABASE=quarkusdb
 ```
 
 ## Sealed Secrets
@@ -45,4 +54,12 @@ Set raw encrypted secret as a Helm value. Keep '--name' as it is.
 ```
 $ echo -n username | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
 $ echo -n password | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
+```
+
+## ArgoCD
+
+This app can be synchronized by ArgoCD:
+
+```
+kubectl apply -f application.yaml
 ```
