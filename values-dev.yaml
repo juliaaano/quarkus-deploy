@@ -2,8 +2,8 @@
 environment: |-
   QUARKUS_LOG_CONSOLE_JSON: "false"
   QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgresql:5432/quarkusdb
-  MP_JWT_VERIFY_PUBLICKEY_LOCATION: https://keycloak:8080/auth/realms/quarkus/protocol/openid-connect/certs
-  MP_JWT_VERIFY_ISSUER: https://keycloak:8080/auth/realms/quarkus
+  MP_JWT_VERIFY_PUBLICKEY_LOCATION: https://keycloak:8080/realms/quarkus/protocol/openid-connect/certs
+  MP_JWT_VERIFY_ISSUER: https://keycloak:8080/realms/quarkus
   APP_AUTHORIZATION_ENABLED: "false"
 
 # SEALED SECRETS: https://github.com/bitnami-labs/sealed-secrets
