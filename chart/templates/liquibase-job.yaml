@@ -17,7 +17,7 @@ spec:
               "--defaultsFile=/liquibase/changelog/liquibase.properties",
               "--changeLogFile=db.changelog-master.xml",
               "--logLevel={{ .Values.liquibase.logLevel }}",
-              "update",
+              "update"
             ]
           envFrom:
             - secretRef:
