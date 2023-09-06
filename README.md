@@ -5,7 +5,7 @@ Deploys the project [https://github.com/juliaaano/quarkus](https://github.com/ju
 See details below for instructions and requirements.
 
 ```
-$ helm install myrelease -f values-dev.yaml chart
+helm install myrelease -f values-dev.yaml chart
 ```
 
 ## PostgreSQL
@@ -13,10 +13,10 @@ $ helm install myrelease -f values-dev.yaml chart
 The app needs a database such as PostgreSQL:
 
 ```
-$ oc new-app --name=postgresql --template=postgresql-ephemeral \
-    -e POSTGRESQL_USER=quarkus \
-    -e POSTGRESQL_PASSWORD=password \
-    -e POSTGRESQL_DATABASE=quarkusdb
+oc new-app --name=postgresql --template=postgresql-ephemeral \
+  -e POSTGRESQL_USER=quarkus \
+  -e POSTGRESQL_PASSWORD=password \
+  -e POSTGRESQL_DATABASE=quarkusdb
 ```
 
 ## Sealed Secrets
@@ -28,7 +28,7 @@ From [https://github.com/bitnami-labs/sealed-secrets](https://github.com/bitnami
 Requires cluster admin access.
 
 ```
-$ kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.16.0/controller.yaml
+kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.23.1/controller.yaml
 ```
 
 ### CLI Installation
@@ -36,7 +36,7 @@ $ kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/downl
 Depends on the client's environment.
 
 ```
-$ brew install kubeseal
+brew install kubeseal
 ```
 
 ### Verify
@@ -44,7 +44,7 @@ $ brew install kubeseal
 Check if controller is up by retrieving the public key.
 
 ```
-$ kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=kube-system
+kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=kube-system
 ```
 
 ### Create RAW Sealed Secret
@@ -52,8 +52,8 @@ $ kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller
 Set raw encrypted secret as a Helm value. Keep '--name' as it is.
 
 ```
-$ echo -n username | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
-$ echo -n password | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
+echo -n username | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
+echo -n password | kubeseal --raw --from-file=/dev/stdin --scope cluster-wide
 ```
 
 ## ArgoCD

@@ -11,5 +11,7 @@ spec:
     kind: Service
     name: {{ include "quarkus.fullname" . }}
     weight: 100
+  tls:
+    termination: edge
   wildcardPolicy: None
 {{- end }}
